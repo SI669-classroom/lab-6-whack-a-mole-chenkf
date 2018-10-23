@@ -20,9 +20,9 @@ export class LeaderboardPage {
   score: number;
   scoreList: any[] = [];
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public dataService: DataProvider, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public dataService: DataProvider,
     public storage: Storage,
     public platform: Platform) {
 
@@ -33,7 +33,8 @@ export class LeaderboardPage {
     console.log('ionViewDidLoad LeaderboardPage');
     // Platform.ready isn't required in the new Ionic
     this.platform.ready().then(() => {
-      /*Storage get*/.then((result) => {
+      /*Storage get*/
+      this.storage.get('leaderboard').then((result) => {
         let res;
         if(!result) {
           res = []
@@ -56,7 +57,8 @@ export class LeaderboardPage {
           }
         })
 
-        /*Storage set*/.('leaderboard', JSON.stringify(res));
+        /*Storage set*/
+        this.storage.set('leaderboard', JSON.stringify(res));
       })
     })
   }
